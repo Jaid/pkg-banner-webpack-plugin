@@ -1,0 +1,28 @@
+# Based on https://github.com/Adobe-CEP/CEP-Resources/blob/e6a415509d021a15e1fc5daeaa60fb5fcf2a0dd1/CEP_9.x/Documentation/CEP%209.0%20HTML%20Extension%20Cookbook.md#applications-integrated-with-cep
+
+photoshop:
+  host: PHSP
+indesign:
+  host: IDSN
+incopy:
+  host: AICY
+illustrator:
+  host: ILST
+premierePro:
+  host: PPRO
+prelude:
+  host: PRLD
+afterEffects:
+  host: AEFT
+animate:
+  host: FLPR
+audition:
+  host: AUDT
+dreamweaver:
+  host: DRWV
+muse:
+  host: MUSE
+bridge:
+  host: KBRG
+rush:
+  host: RUSH
