@@ -3,17 +3,13 @@
   "version": "0.1.0",
   "author": "Jaid <jaid.jsx@gmail.com> (https://github.com/Jaid)",
   "dependencies": {
-    "@absolunet/fss": "^1.6.2",
+    "@absolunet/fsp": "^1.6.2",
     "@babel/runtime": "^7.7.6",
-    "ensure-array": "^1.0.0",
-    "ensure-object": "^1.0.1",
-    "lodash": "^4.17.15",
-    "ow": "^0.15.0",
-    "resolve-any": "^2.0.0",
-    "xmlbuilder": "^13.0.2"
+    "debug": "^4.1.1",
+    "webpack-sources": "^1.4.3",
+    "zahl": "^2.0.3"
   },
   "devDependencies": {
-    "@absolunet/fsp": "^1.6.2",
     "acorn": "^7.1.0",
     "babel-jest": "^24.9.0",
     "babel-preset-jaid": "^7.3.0",
@@ -26,7 +22,7 @@
     "pify": "^4.0.1",
     "rimraf": "^3.0.0",
     "webpack": "^4.41.3",
-    "webpack-config-jaid": "^7.8.0"
+    "webpack-config-jaid": "^7.4.0"
   },
   "scripts": {
     "clean": "rimraf dist/",
@@ -35,11 +31,11 @@
     "babel:test": "rimraf dist/transpiled/test && NODE_ENV=test babel --out-dir dist/transpiled/test src",
     "build:prod": "NODE_ENV=production webpack",
     "build:dev": "NODE_ENV=development webpack",
-    "test": "npm run build:prod && NODE_ENV=production MAIN=dist/package/production jest --runInBand",
+    "test": "npm run build:prod && NODE_ENV=production MAIN=dist/package/production jest --runInBand --detectOpenHandles",
     "test:coverage": "npm run test:dev -- --coverage --json --outputFile=dist/jest/stats.json",
     "test:debug": "DEBUG=\"$(basename $PWD),$(basename $PWD):*\" NODE_ENV=test node --inspect=9229 node_modules/jest/bin/jest.js --runInBand",
     "prepareActionJest": "npm run build:prod"
   },
   "name": "pkg-banner-webpack-plugin",
-  "description": "Webpack plugin that emits a CSXS/manifest.xml file for Adobe CEP extensions."
+  "description": "Webpack plugin that prepends output with a license comment based on package.json values."
 }
