@@ -1,7 +1,7 @@
 # pkg-banner-webpack-plugin
 
 
-Webpack plugin that emits a CSXS/manifest.xml file for Adobe CEP extensions.
+Webpack plugin that prepends output with a license comment based on package.json values.
 
 ## Installation
 <a href='https://npmjs.com/package/pkg-banner-webpack-plugin'><img alt='npm logo' src='https://github.com/Jaid/action-readme/raw/master/images/base-assets/npm.png'/></a>
