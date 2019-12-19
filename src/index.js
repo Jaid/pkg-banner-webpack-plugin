@@ -193,13 +193,7 @@ export default class {
             },
           },
         }
-        const debugContent = xmlWriter.create(debugModel, xmlCreateOptions).end({pretty: !this.options.minify})
-        compilation.assets[this.options.debugFileName] = {
-          source: () => debugContent,
-          size: () => debugContent.length,
-        }
-      }
-    })
+          for (const chunkFile of chunk.files) {
   }
 
 }
