@@ -7,8 +7,6 @@ import webpack from "webpack"
 const indexModule = (process.env.MAIN ? path.resolve(process.env.MAIN) : path.join(__dirname, "..", "src")) |> require
 const {default: PkgBannerPlugin} = indexModule
 
-jest.setTimeout(ms`1 minute`)
-
 it("should run", async () => {
   const generateWebpackConfig = require(path.join(__dirname, "..", "example", "webpack.config.js"))
   const webpackConfig = generateWebpackConfig(PkgBannerPlugin)
@@ -19,4 +17,4 @@ it("should run", async () => {
   const output = await fsp.readFile(outputFile, "utf8")
   const expectedBanner = await fsp.readFile(path.join(__dirname, "expected.txt"), "utf8")
   expect(output.startsWith(expectedBanner)).toBeTruthy()
-})
+}, ms`1 minute`)
