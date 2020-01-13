@@ -38,5 +38,9 @@
   },
   "name": "pkg-banner-webpack-plugin",
   "description": "Webpack plugin that prepends output with a license comment based on package.json values.",
-  "funding": "https://github.com/sponsors/jaid"
+  "funding": "https://github.com/sponsors/jaid",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaid/pkg-banner-webpack-plugin"
+  }
 }
