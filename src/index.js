@@ -1,10 +1,27 @@
 /** @module pkg-banner-webpack-plugin */
 
 import fsp from "@absolunet/fsp"
+import Handlebars from "handlebars"
 import path from "path"
 import {ConcatSource} from "webpack-sources"
 
-import template from "./template.hbs"
+// TODO: handlebars-loader does not work anymore for some reason, so I temporarily installed handlebars as prod dependency
+const template = Handlebars.compile(`/*!
+{{#if pkg.version}}
+*** {{{title}}} {{{pkg.version}}}
+{{else}}
+*** {{{title}}}
+{{/if}}
+{{#if pkg.author}}
+*** Copyright © {{{year}}}, {{{pkg.author}}}
+{{else}}
+*** Copyright © {{{year}}}
+{{/if}}
+*** @license {{{license}}}
+{{#if pkg.homepage}}
+*** See {{{pkg.homepage}}}
+{{/if}}
+!*/`)
 
 const debug = require("debug")(process.env.REPLACE_PKG_NAME)
 
