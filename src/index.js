@@ -6,7 +6,7 @@ import {ConcatSource} from "webpack-sources"
 
 import template from "./template.hbs"
 
-const debug = require("debug")(_PKG_NAME)
+const debug = require("debug")(process.env.REPLACE_PKG_NAME)
 
 /**
  * @typedef {Object} Options
