@@ -43,5 +43,19 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jaid/pkg-banner-webpack-plugin"
-  }
+  },
+  "homepage": "https://github.com/Jaid/pkg-banner-webpack-plugin",
+  "keywords": [
+    "package",
+    "utility",
+    "automation",
+    "webpack",
+    "webpack-plugin",
+    "banner",
+    "comment",
+    "package-json",
+    "util",
+    "pkg",
+    "license"
+  ]
 }
