@@ -1,3 +1,5 @@
+import "jest-extended"
+
 import fsp from "@absolunet/fsp"
 import ms from "ms.macro"
 import path from "path"
@@ -16,5 +18,5 @@ it("should run", async () => {
   expect(exists).toBeTruthy()
   const output = await fsp.readFile(outputFile, "utf8")
   const expectedBanner = await fsp.readFile(path.join(__dirname, "expected.txt"), "utf8")
-  expect(output.startsWith(expectedBanner)).toBeTruthy()
+  expect(output).toStartWith(expectedBanner)
 }, ms`1 minute`)
