@@ -29,6 +29,7 @@ const debug = require("debug")(process.env.REPLACE_PKG_NAME)
 /**
  * @typedef {Object} Options
  * @prop {Object} pkg If given, package.json will not be read and this value will be used instead
+ * @prop {string} [defaultLicense="MIT"]
  */
 
 /**
@@ -73,7 +74,7 @@ export default class PkgBannerPlugin {
           pkg,
           options: this.options,
           title: pkg.title || pkg.domain || pkg.name || path.basename(compiler.context),
-          license: pkg.license || "MIT",
+          license: pkg.license || this.options.defaultLicense,
           year: (new Date).getFullYear(),
         }
         debug(`Title: ${context.title}`)
