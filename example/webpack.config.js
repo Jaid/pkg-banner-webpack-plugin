@@ -21,7 +21,7 @@ module.exports = TestPlugin => {
       },
       output: {
         ecma: 2020,
-        comments: (astTop, astToken) => {
+        comments: (_astTop, astToken) => {
           return astToken.line === 1
         },
       },
