@@ -43,6 +43,7 @@ export default class PkgBannerPlugin {
    */
   constructor(options) {
     this.options = {
+      defaultLicense: "MIT",
       ...options,
     }
   }
