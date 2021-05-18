@@ -54,7 +54,8 @@ export default class PkgBannerPlugin {
     // See https://github.com/webpack/webpack/blob/master/lib/BannerPlugin.js
     const processAssetsTapIdentifier = {
       name: process.env.REPLACE_PKG_NAME,
-      stage: webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONS,
+      // TODO: Enable again for Webpack 5
+      // stage: webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONS,
     }
     compiler.hooks.compilation.tap(process.env.REPLACE_PKG_NAME, compilation => {
       compilation.hooks.optimizeChunkAssets.tapPromise(processAssetsTapIdentifier, async () => {
