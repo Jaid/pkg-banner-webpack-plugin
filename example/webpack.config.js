@@ -9,6 +9,9 @@ const path = require("path")
 module.exports = TestPlugin => {
   return {
     mode: "production",
+    optimization: {
+      minimize: false,
+    },
     context: path.join(__dirname, "..", "example"),
     entry: path.join(__dirname, "..", "example", "src"),
     output: {
