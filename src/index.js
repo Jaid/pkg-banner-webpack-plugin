@@ -66,18 +66,18 @@ export default class PkgBannerPlugin {
         const context = {
           pkg,
           options: this.options,
-          title: pkg.title || pkg.domain || pkg.name,
+          title: pkg.title || pkg.domain || pkg.name || path.basename(compiler.context),
           license: pkg.license || "MIT",
           year: (new Date).getFullYear(),
         }
-        if (!context.title) {
-          context.title = path.basename(compiler.context)
-        }
         debug(`Title: ${context.title}`)
+        debug(`License: ${context.license}`)
+        debug(`Year: ${context.year}`)
         const banner = template(context)
         for (const chunk of chunks) {
           for (const chunkFile of chunk.files) {
-            compilation.assets[chunkFile] = new ConcatSource(banner, "\n", compilation.assets[chunkFile])
+            debug(`Applying to: ${chunkFile}`)
+            compilation.updateAsset(chunkFile, source => new ConcatSource(banner, "\n", source))
           }
         }
       })
