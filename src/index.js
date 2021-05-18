@@ -3,6 +3,7 @@
 import fsp from "@absolunet/fsp"
 import Handlebars from "handlebars"
 import path from "path"
+import webpack from "webpack"
 import {ConcatSource} from "webpack-sources"
 
 // TODO: handlebars-loader does not work anymore for some reason, so I temporarily installed handlebars as prod dependency
@@ -30,8 +31,6 @@ const debug = require("debug")(process.env.REPLACE_PKG_NAME)
  * @prop {Object} pkg If given, package.json will not be read and this value will be used instead
  */
 
-const webpackId = "PkgBannerPlugin"
-
 /**
  * @class
  */
@@ -51,8 +50,14 @@ export default class PkgBannerPlugin {
    * @param {import("webpack").Compiler} compiler
    */
   apply(compiler) {
-    compiler.hooks.compilation.tap(webpackId, compilation => {
-      compilation.hooks.optimizeChunkAssets.tapPromise(webpackId, async chunks => {
+    // This code is based on the very similar official BannerPlugin
+    // See https://github.com/webpack/webpack/blob/master/lib/BannerPlugin.js
+    const processAssetsTapIdentifier = {
+      name: process.env.REPLACE_PKG_NAME,
+      stage: webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONS,
+    }
+    compiler.hooks.compilation.tap(process.env.REPLACE_PKG_NAME, compilation => {
+      compilation.hooks.optimizeChunkAssets.tapPromise(processAssetsTapIdentifier, async () => {
         let pkg = this.options.pkg
         if (!pkg) {
           const file = path.join(compiler.context, "package.json")
@@ -74,7 +79,7 @@ export default class PkgBannerPlugin {
         debug(`License: ${context.license}`)
         debug(`Year: ${context.year}`)
         const banner = template(context)
-        for (const chunk of chunks) {
+        for (const chunk of compilation.chunks) {
           for (const chunkFile of chunk.files) {
             debug(`Applying to: ${chunkFile}`)
             compilation.updateAsset(chunkFile, source => new ConcatSource(banner, "\n", source))
