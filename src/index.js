@@ -7,22 +7,7 @@ import webpack from "webpack"
 import {ConcatSource} from "webpack-sources"
 
 // TODO: handlebars-loader does not work anymore for some reason, so I temporarily installed handlebars as prod dependency
-const template = Handlebars.compile(`/*!
-{{#if pkg.version}}
-*** {{{title}}} {{{pkg.version}}}
-{{else}}
-*** {{{title}}}
-{{/if}}
-{{#if pkg.author}}
-*** Copyright © {{{year}}}, {{{pkg.author}}}
-{{else}}
-*** Copyright © {{{year}}}
-{{/if}}
-*** @license {{{license}}}
-{{#if pkg.homepage}}
-*** See {{{pkg.homepage}}}
-{{/if}}
-!*/`)
+const template = require("./template.hbs")
 
 const debug = require("debug")(process.env.REPLACE_PKG_NAME)
 
@@ -59,7 +44,7 @@ export default class PkgBannerPlugin {
       stage: webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONS,
     }
     compiler.hooks.compilation.tap(process.env.REPLACE_PKG_NAME, compilation => {
-      compilation.hooks.optimizeChunkAssets.tapPromise(processAssetsTapIdentifier, async () => {
+      compilation.hooks.processAssets.tapPromise(processAssetsTapIdentifier, async () => {
         let pkg = this.options.pkg
         if (!pkg) {
           const file = path.join(compiler.context, "package.json")
