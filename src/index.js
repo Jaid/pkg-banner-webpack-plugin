@@ -7,7 +7,22 @@ import webpack from "webpack"
 import {ConcatSource} from "webpack-sources"
 
 // TODO: handlebars-loader does not work anymore for some reason, so I temporarily installed handlebars as prod dependency
-const template = require("./template.hbs")
+const template = Handlebars.compile(`/*!
+{{#if pkg.version}}
+*** {{{title}}} {{{pkg.version}}}
+{{else}}
+*** {{{title}}}
+{{/if}}
+{{#if pkg.author}}
+*** Copyright © {{{year}}}, {{{pkg.author}}}
+{{else}}
+*** Copyright © {{{year}}}
+{{/if}}
+*** @license {{{license}}}
+{{#if pkg.homepage}}
+*** See {{{pkg.homepage}}}
+{{/if}}
+!*/`)
 
 const debug = require("debug")(process.env.REPLACE_PKG_NAME)
 
