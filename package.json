@@ -5,7 +5,6 @@
   "dependencies": {
     "@absolunet/fsp": "^1.7.0",
     "debug": "^4.3.1",
-    "handlebars": "^4.7.7",
     "webpack-sources": "^2.2.0",
     "zahl": "^2.0.6"
   },
