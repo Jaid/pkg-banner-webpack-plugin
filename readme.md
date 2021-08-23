@@ -25,12 +25,7 @@ npm install --save-dev pkg-banner-webpack-plugin@^1.2.1
 yarn add --dev pkg-banner-webpack-plugin@^1.2.1
 ```
 
-<a href="https://github.com/jaid/pkg-banner-webpack-plugin/packages"><img src="https://img.shields.io/badge/GitHub Packages-@jaid/pkg--banner--webpack--plugin-24282e?style=flat-square&logo=github" alt="@jaid/pkg-banner-webpack-plugin on GitHub Packages"/></a>  
-(if [configured properly](https://help.github.com/en/github/managing-packages-with-github-packages/configuring-npm-for-use-with-github-packages))
 
-```bash
-npm install --save-dev @jaid/pkg-banner-webpack-plugin@^1.2.1
-```
 
 
 
@@ -54,6 +49,9 @@ npm install --save-dev @jaid/pkg-banner-webpack-plugin@^1.2.1
 
 ## Development
 
+<details>
+<summary><b>Development hints for maintaining and improving pkg-banner-webpack-plugin</b></summary>
+
 
 
 Setting up:
@@ -67,7 +65,13 @@ Testing in production environment:
 npm run test
 ```
 
+</details>
 
 ## License
 [MIT License](https://raw.githubusercontent.com/jaid/pkg-banner-webpack-plugin/master/license.txt)  
 Copyright © 2021, Jaid \<jaid.jsx@gmail.com> (https://github.com/jaid)
+
+<!---
+Readme generated with tldw v7.1.0
+https://github.com/Jaid/tldw
+-->
